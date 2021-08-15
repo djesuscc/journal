@@ -10,7 +10,9 @@ export const loginEmailPassword = (email, password) => {
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
       })
-      .catch(console.error)
+      .catch((err) => {
+        Swal.fire('Error', err.message, 'error');
+      })
       .finally(() => dispatch(finishLoading()))
   }
 }
@@ -24,7 +26,7 @@ export const registerEmailPassword = (email, password, name) => {
         dispatch(login(user.uid, user.displayName));
       })
       .catch((err) => {
-        Swal.fire('Error', e.message, 'error');
+        Swal.fire('Error', err.message, 'error');
       })
       .finally(() => dispatch(finishLoading()))
   }
